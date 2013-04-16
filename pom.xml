@@ -5,7 +5,11 @@
   <version>0.0.1</version>
   <name>Ice4j</name>
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>${basedir}/src</sourceDirectory>
+    <scriptSourceDirectory>${basedir}/scripts</scriptSourceDirectory>
+    <testSourceDirectory>${basedir}/test</testSourceDirectory>
+    <outputDirectory>${basedir}/target/classes</outputDirectory>
+    <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -17,7 +21,33 @@
       </plugin>
     </plugins>
   </build>
+  <repositories>
+  	<repository>
+		<id>mvn-loopingz</id>
+		<url>https://mvn.loopingz.com/</url>
+	</repository>
+  </repositories>
+    <distributionManagement>
+    <repository>
+      <id>mvn-loopingz</id>
+      <name>Loopingz Repository</name>
+      <url>dav:https://mvn.loopingz.com/</url>
+      <uniqueVersion>false</uniqueVersion>
+    </repository>
+  </distributionManagement>
   <dependencies>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.10</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+		<groupId>javax.sdp</groupId>
+		<artifactId>nist-sdp</artifactId>
+		<version>1.0</version>
+  		<scope>test</scope>
+	</dependency>
     <dependency>
       <groupId>org.bitlet</groupId>
       <artifactId>weupnp</artifactId>
