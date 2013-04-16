@@ -233,7 +233,6 @@ public abstract class PseudoTcpTestBase extends MultiThreadSupportTest
      *
      * @param tcp
      */
-    @Override
     public void onTcpOpen(PseudoTCPBase tcp)
     {
         if (tcp == localTcp)
@@ -249,7 +248,6 @@ public abstract class PseudoTcpTestBase extends MultiThreadSupportTest
      * @param tcp
      * @param exc
      */
-    @Override
     public void onTcpClosed(PseudoTCPBase tcp, IOException exc)
     {
         assert exc == null;
@@ -411,7 +409,6 @@ public abstract class PseudoTcpTestBase extends MultiThreadSupportTest
      * @param len
      * @return
      */
-    @Override
     public WriteResult tcpWritePacket(PseudoTCPBase tcp, byte[] buffer, int len)
     {
         // Randomly drop the desired percentage of packets.
@@ -552,7 +549,6 @@ public abstract class PseudoTcpTestBase extends MultiThreadSupportTest
             runClocks = true;
             localClockThread = new Thread(new Runnable()
             {
-                @Override
                 public void run()
                 {
                     while (runClocks)
@@ -566,7 +562,6 @@ public abstract class PseudoTcpTestBase extends MultiThreadSupportTest
             }, "LocalClockThread");
             remoteClockThread = new Thread(new Runnable()
             {
-                @Override
                 public void run()
                 {
                     while (runClocks)
@@ -625,7 +620,6 @@ public abstract class PseudoTcpTestBase extends MultiThreadSupportTest
     {
         return assert_wait_until(new WaitUntilDone()
         {
-            @Override
             public boolean isDone()
             {
                 return PseudoTcpTestBase.this.have_connected_;
@@ -644,7 +638,6 @@ public abstract class PseudoTcpTestBase extends MultiThreadSupportTest
     {
         return assert_wait_until(new WaitUntilDone()
         {
-            @Override
             public boolean isDone()
             {
                 return PseudoTcpTestBase.this.have_disconnected_;

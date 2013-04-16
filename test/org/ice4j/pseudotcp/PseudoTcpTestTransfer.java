@@ -172,7 +172,6 @@ public class PseudoTcpTestTransfer extends PseudoTcpTestBase
      *
      * @param tcp
      */
-    @Override
     public void onTcpReadable(PseudoTCPBase tcp)
     {
         if (tcp == getRemoteTcp())
@@ -209,7 +208,6 @@ public class PseudoTcpTestTransfer extends PseudoTcpTestBase
      *
      * @param tcp
      */
-    @Override
     public void onTcpWriteable(PseudoTCPBase tcp)
     {
         if (tcp == getLocalTcp())

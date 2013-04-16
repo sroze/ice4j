@@ -55,7 +55,6 @@ public class PseudoTcpStreamTest
             new PseudoTcpSocketFactory().createSocket();
         Thread serverThread = new Thread(new Runnable()
         {
-            @Override
             public void run()
             {
                 try
@@ -89,7 +88,6 @@ public class PseudoTcpStreamTest
             new PseudoTcpSocketFactory().createSocket();
         Thread clientThread = new Thread(new Runnable()
         {
-            @Override
             public void run()
             {
                 try
@@ -137,7 +135,6 @@ public class PseudoTcpStreamTest
         {
             boolean success = assert_wait_until(new WaitUntilDone()
             {
-                @Override
                 public boolean isDone()
                 {
                     return client.getState() == PseudoTcpState.TCP_CLOSED;
@@ -225,7 +222,6 @@ public class PseudoTcpStreamTest
         //Servers thread waiting for connection
         new Thread(new Runnable()
         {            
-            @Override
             public void run()
             {
                 try
@@ -258,8 +254,6 @@ public class PseudoTcpStreamTest
         //Clients thread connects and closes socket
         new Thread(new Runnable()
         {
-            
-            @Override
             public void run()
             {
                 try
@@ -277,8 +271,6 @@ public class PseudoTcpStreamTest
         //Waits for server to close socket
         boolean done = assert_wait_until(new WaitUntilDone()
         {
-            
-            @Override
             public boolean isDone()
             {
                 return server.getState() == PseudoTcpState.TCP_CLOSED;
@@ -298,8 +290,6 @@ public class PseudoTcpStreamTest
     {
         doTestTimeout(new TimeoutOperationTest()
         {
-            
-            @Override
             public void testTimeout(PseudoTcpSocketImpl socket) throws IOException
             {
                 socket.setPTCPOption(Option.OPT_READ_TIMEOUT, 300);
@@ -316,7 +306,6 @@ public class PseudoTcpStreamTest
     {
         doTestTimeout(new TimeoutOperationTest()
         {            
-            @Override
             public void testTimeout(PseudoTcpSocketImpl socket) throws IOException
             {
                 //buffer that will exceed stack's buffer size
@@ -335,7 +324,6 @@ public class PseudoTcpStreamTest
     {
         doTestTimeout(new TimeoutOperationTest()
         {            
-            @Override
             public void testTimeout(PseudoTcpSocketImpl socket) throws IOException
             {
                 //buffer that will exceed stack's buffer size

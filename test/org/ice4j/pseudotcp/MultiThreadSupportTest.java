@@ -29,7 +29,6 @@ public class MultiThreadSupportTest
     	
     }
     
-    @Override
     public void uncaughtException(Thread t, Throwable e)
     {
         synchronized (testLock)

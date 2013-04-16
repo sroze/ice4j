@@ -107,7 +107,6 @@ public class PseudoTcpTestPingPong extends PseudoTcpTestBase
      *
      * @param tcp
      */
-    @Override
     public void onTcpReadable(PseudoTCPBase tcp)
     {
         assertEquals("Unexpected onTcpReadable", receiver, tcp);
@@ -157,7 +156,6 @@ public class PseudoTcpTestPingPong extends PseudoTcpTestBase
      *
      * @param tcp
      */
-    @Override
     public void onTcpWriteable(PseudoTCPBase tcp)
     {
         if (tcp != sender)

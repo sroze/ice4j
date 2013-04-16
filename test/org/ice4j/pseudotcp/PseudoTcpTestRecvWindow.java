@@ -307,12 +307,10 @@ public class PseudoTcpTestRecvWindow extends PseudoTcpTestBase
         return send_position.get(0);
     }
 
-    @Override
     public void onTcpReadable(PseudoTCPBase tcp)
     {
     }
 
-    @Override
     public void onTcpWriteable(PseudoTCPBase tcp)
     {
     }
