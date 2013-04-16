@@ -391,14 +391,16 @@ public class IcePseudoTcp
                     read += socket.getInputStream().read(buffer);
                     logger.log(Level.FINEST, "Local job read: " + read);
                 }
+                
+                logger.log(Level.INFO, "Local pseudotcp worker finished");
                 //TODO: close when all received data is acked
                 //socket.close();
             }
             catch (IOException e)
             {
+            	logger.log(Level.SEVERE, "Unable to read from local worker: "+e.getMessage(), e);
                 throw new RuntimeException(e);
             }
-            logger.log(Level.FINEST, "Local pseudotcp worker finished");
         }
     }
 
