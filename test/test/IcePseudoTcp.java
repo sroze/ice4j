@@ -384,6 +384,7 @@ public class IcePseudoTcp
                 socket.setMTU(1500);
                 socket.setDebugName("L");
                 socket.accept(5000);                
+                socket.setOption(Option.OPT_WRITE_TIMEOUT, 10000);
                 byte[] buffer = new byte[TEST_BYTES_COUNT];
                 int read = 0;
                 while (read != TEST_BYTES_COUNT)
@@ -391,6 +392,12 @@ public class IcePseudoTcp
                     read += socket.getInputStream().read(buffer);
                     logger.log(Level.FINEST, "Local job read: " + read);
                 }
+                logger.log(Level.INFO, "Local job finished read");
+                
+                // Send back bytes
+                socket.getOutputStream().write(buffer);
+                logger.log(Level.INFO, "Local job wrote "+TEST_BYTES_COUNT+" bytes");
+                socket.getOutputStream().flush();
                 
                 logger.log(Level.INFO, "Local pseudotcp worker finished");
                 //TODO: close when all received data is acked
@@ -432,18 +439,34 @@ public class IcePseudoTcp
                 socket.setConversationID(1073741824);
                 socket.setMTU(1500);
                 socket.setDebugName("R");
+                socket.setOption(Option.OPT_WRITE_TIMEOUT, 10000);
                 long start, end;
                 start = System.currentTimeMillis();
                 socket.connect(peerAddr, 5000);
                 byte[] buffer = new byte[TEST_BYTES_COUNT];
                 socket.getOutputStream().write(buffer);
                 socket.getOutputStream().flush();
-                //Socket will be closed by the iceAgent
-                //socket.close();
                 end = System.currentTimeMillis();
                 logger.log(Level.INFO,
-                           "Transferred " + TEST_BYTES_COUNT
-                    + " bytes in " + ((end - start) / 1000) + " sec");
+                           "Remote sent " + TEST_BYTES_COUNT
+                    + " bytes in " + ((end - start)) + " msec");
+                
+                // Wait for other data
+                start = System.currentTimeMillis();
+                socket.accept(5000);
+                int read = 0;
+                while (read != TEST_BYTES_COUNT)
+                {
+                    read += socket.getInputStream().read(buffer);
+                    logger.log(Level.FINEST, "Remote job read: " + read);
+                }
+
+                end = System.currentTimeMillis();
+                logger.log(Level.INFO,
+                           "Remote read " + TEST_BYTES_COUNT
+                    + " bytes in " + ((end - start)) + " msec");
+                //Socket will be closed by the iceAgent
+                //socket.close();
             }
             catch (IOException e)
             {
