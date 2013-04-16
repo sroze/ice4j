@@ -20,6 +20,11 @@
         </configuration>
       </plugin>
     </plugins>
+    <resources>
+      <resource>
+        <directory>${basedir}/resources</directory>
+      </resource>
+    </resources>
   </build>
   <repositories>
   	<repository>
