@@ -29,6 +29,11 @@ public class MultiThreadSupportTest
     	
     }
     
+    public void testFake ()
+    {
+    	assertTrue(true);
+    }
+    
     public void uncaughtException(Thread t, Throwable e)
     {
         synchronized (testLock)
