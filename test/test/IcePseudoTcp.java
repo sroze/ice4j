@@ -51,7 +51,7 @@ public class IcePseudoTcp
     /**
      * Flag inidcates if TURN should be used
      */
-    private static final boolean USE_TURN = true;
+    private static final boolean USE_TURN = false;
     /**
      * Monitor object used to wait for remote agent to finish it's job
      */
