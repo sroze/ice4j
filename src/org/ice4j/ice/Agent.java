@@ -1102,10 +1102,27 @@ public class Agent
      */
     public void removeStream(IceMediaStream stream)
     {
+    	removeStream(stream, true);
+    }
+    
+    /**
+     * Removes <tt>stream</tt> and all its child <tt>Component</tt>s and
+     * <tt>Candidate</tt>s from the this agent and releases all resources that
+     * they had allocated (like sockets for example)
+     *
+     * @param stream the <tt>Component</tt> we'd like to remove and free.
+     * @param boolean Free the stream ?
+     */
+    public void removeStream(IceMediaStream stream, boolean free)
+    {
         synchronized (mediaStreams)
         {
             mediaStreams.remove(stream.getName());
-            stream.free();
+            
+            // If wanted, free stream
+            if (free) {
+            	stream.free();
+            }
         }
     }
 
