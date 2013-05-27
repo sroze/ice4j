@@ -287,7 +287,20 @@ public class Agent
         IceMediaStream mediaStream
             = new IceMediaStream(Agent.this, mediaStreamName);
 
-        mediaStreams.put(mediaStreamName, mediaStream);
+        addMediaStream(mediaStream);
+
+        return mediaStream;
+    }
+    
+    /**
+     * Add a media stream.
+     * 
+     * @param stream
+     */
+    public void addMediaStream (IceMediaStream stream)
+    {
+    	mediaStreams.put(stream.getName(), stream);
+    	logger.info("Media stream '"+stream.getName()+"' added to agent");
 
         // Since we add a new stream, we must wait to add the component and the
         // remote candidates before starting to "RUN" this Agent.
@@ -296,8 +309,6 @@ public class Agent
         // this way incoming connectivity checks are registered in the
         // preDiscoveredPairsQueue until this Agent is in RUNNING state.
         this.setState(IceProcessingState.WAITING);
-
-        return mediaStream;
     }
 
     /**
