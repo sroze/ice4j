@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.ice4j</groupId>
   <artifactId>ice4j</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.1-lmc</version>
   <name>Ice4j</name>
   <build>
     <sourceDirectory>${basedir}/src</sourceDirectory>
